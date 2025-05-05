@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>My Art Portfolio</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <h1>My Art Portfolio</h1>
+  <div class="gallery" id="gallery"></div>
+
+  <script>
+    //loads the art on the art page
+    async function loadArt() {
+        //making the route call
+        const res = await fetch('http://localhost:3001/art');
+        const artworks = await res.json();
+        const gallery = document.getElementById('gallery');
+
+        //creating a display card for each work of art
+        artworks.forEach(art => {
+        const card = document.createElement('div');
+        card.className = 'art-card';
+        //adding the text from the art json file for the relevant work of art
+        card.innerHTML = `
+          <img src="http://localhost:3001${art.imagePath}" alt="${art.title}">
+          <h3>${art.title}</h3>
+          <p>${art.blurb}</p>
+        `;
+
+        //clicking on the card showing its blurb
+        card.addEventListener('click', () => {
+          card.classList.toggle('show');
+        });
+
+        gallery.appendChild(card);
+      });
+    }
+
+    loadArt();
+  </script>
+</body>
+</html>

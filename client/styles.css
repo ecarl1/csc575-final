@@ -1,0 +1,55 @@
+body {
+    font-family: sans-serif;
+    padding: 20px;
+    background-color: #f7f7f7;
+    color: #333;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .art-card {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 15px;
+    width: 250px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .art-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .art-card img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .art-card h3 {
+    margin: 10px 0 5px;
+    font-size: 1.2em;
+  }
+  
+  .art-card p {
+    display: none;
+    font-size: 0.95em;
+    line-height: 1.4;
+  }
+  
+  .art-card.show p {
+    display: block;
+  }
+  

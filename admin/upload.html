@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Upload Art</title>
+    </head>
+    <body>
+    <h1>Upload here</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <label>Title:</label><br>
+        <input type= "text" name="title" required ><br>
+
+        <label>Blurb:</label><br>
+        <textarea name = "blurb" rows="4" cols= "50" required></textarea><br><br>
+
+        <label>Image:</label><br>
+        <input type ="file" name= "image" accept ="image/*" required><br><br>
+
+        <button type="submit">Upload</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+
+        //posting image
+        try {
+            //calling route
+            const res = await fetch('http://localhost:3001/api/upload', {
+            method: 'POST',
+            body: formData
+            });
+
+            const data = await res.json();
+            document.getElementById('result').innerText = 
+            res.ok ? ' Upload working' : ' Upload fail ' + data.error;
+        } catch (err) {
+            document.getElementById('result').innerText = 'Error: ' + err.message;
+        }
+        });
+    </script>
+    <script src="loginScript.js"></script>
+    </body>
+</html>
